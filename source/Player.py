@@ -3,8 +3,7 @@ import pygame
 from pygame.locals import *
 
 class Player:
-    def __init__(self, x, y, jumpFX):
-        self.jumpFX = jumpFX
+    def __init__(self, x, y):
         self.imagesRight = []
         self.imagesLeft = []
         self.imagesStay = []

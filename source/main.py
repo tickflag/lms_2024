@@ -1,7 +1,6 @@
 import sys
 import pygame
 from pygame.locals import *
-from pygame import mixer
 import json
 
 from Player import Player
@@ -11,14 +10,12 @@ from Diamond import Diamond
 from data import *
 
 #setting
-with open('settings.json') as file:
-    data = json.load(file)
-    screenWidth = data['width']
-    screenHeight = data['height']
-    fps = data['fps']
-    fontName = data['font_name']
-    fontSize = data['font_size']
 
+screenWidth = 800
+screenHeight = 800
+fps = 60
+fontName = "Bauhaus"
+fontSize = 70
 def drawText(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
     screen.blit(img, (x, y))
@@ -27,7 +24,6 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption('Огонь и Вода финал')
 pygame.mixer.pre_init(44100, -16, 2, 512)
-mixer.init()
 pygame.init()
 font = pygame.font.SysFont('Bauhaus 93', 70)
 #colors
@@ -43,17 +39,7 @@ buttonRestartImage = pygame.image.load('images/restart_btn.png')
 buttonRestartImage = pygame.transform.scale(buttonRestartImage, (256, 128))
 
 #
-diamondFX = pygame.mixer.Sound('sounds/diamond_pick_up.wav')
-walkFX = pygame.mixer.Sound('sounds/walk.wav')
-jumpFX = pygame.mixer.Sound('sounds/jump.wav')
-#
-diamondFX = pygame.mixer.Sound('sounds/diamond_pick_up.wav')
-diamondFX.set_volume(2)
-jumpFX = pygame.mixer.Sound('sounds/jump.wav')
-jumpFX.set_volume(2)
-
-#
-player = Player(736, 736, jumpFX)
+player = Player(736, 736)
 startButton = Button(screenWidth // 2 - 250, screenHeight // 2 - 100, buttonStartImage)
 exitButton = Button(screenWidth // 2 + 50, screenHeight // 2 - 100, buttonExitImage)
 restartButton = Button(screenWidth // 2 - 250, screenHeight // 2 - 100, buttonRestartImage)
